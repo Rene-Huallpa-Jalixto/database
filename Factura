@@ -1,0 +1,59 @@
+/* Crea la pimera tabla y la principal  */
+
+create table bcabecera
+(
+    ruc int not null primary key,
+    nfactura varchar(11) ,
+    codcliente int,
+    coddetalle varchar(4),
+    bfecha timestamp,
+    foreign key(codcliente) references bcliente(codcliente),
+    foreign key(coddetalle) references bdventas(coddetalle)
+)
+drop table bcabecera
+
+
+/* Crea la tabla "bcliente" */
+create table bcliente 
+(
+    codcliente int primary key,  
+    nombre varchar(100),
+    direccion varchar(100),
+    fecha timestamp,
+    gremision varchar(200)
+)
+drop table bcliente
+
+/* Crea la tabla "bdventas" */
+create table bdventas
+(
+    coddetalle varchar(4) primary key,
+    cantidad varchar(5),
+    codproducto char(4),
+    subtotal varchar(10),
+    igv varchar(9),
+    total varchar(9),
+    foreign key(codproducto) references bproducto(codproducto)
+)
+drop table bdventas
+
+/* Crea la tabla "bproducto" */
+create table bproducto
+(
+    codproducto char(4) primary key,
+    codcategoria varchar(4),
+    codnombre varchar(5),
+    codprecio varchar(9),
+    codimpuesto varchar(3),
+    foreign key(codcategoria) references bcategoria(codcategoria)
+)
+drop table bproducto
+
+/* Crea la tabla "bcategoria" */
+create table bcategoria
+(
+    codcategoria varchar(3) primary key,
+    nombre varchar(100),
+    descripcion varchar(500)
+)
+drop table bcategoria
